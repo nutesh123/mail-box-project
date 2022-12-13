@@ -1,15 +1,22 @@
 import React from 'react';
 import { useRef } from 'react';
+import { useDispatch } from 'react-redux';
+import { loginPage } from '../store/auth';
+import { Link ,useNavigate  } from 'react-router-dom';
+
+
 
 function SignUp() {
+
+  const Navigate =useNavigate()
+
+  const dispatch = useDispatch() ;
+
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
   const confirmpasswordInputRef = useRef();
-
-  // const [isLogin, setIsLogin] = useState(true);
   
   const submitHandler = (event) => {
-      //Prevent page reload
       event.preventDefault()
    
       const enteredEmail = emailInputRef.current.value;
@@ -30,11 +37,9 @@ function SignUp() {
             },
           }
         ).then((respo) => {
-          console.log("my console respose", respo)
           if (respo.ok) {
               // ...
               return respo.json() ;
-            //  console.log("if res.ok")
             } 
             else {
                   console.log("kuchh bhi else")
@@ -49,8 +54,8 @@ function SignUp() {
                   });
           }
       }).then((data) => {
-          console.log(data)
           console.log('User has successfully signed up.')
+          Navigate('/login')
           
         })
         .catch((err) => {
@@ -59,6 +64,11 @@ function SignUp() {
         });
 
   }
+
+  // const tologin =()=>{
+  //   dispatch(loginPage(true))
+  // }
+
   return (
       <div className='container'>
       <div className='row'>
@@ -79,7 +89,7 @@ function SignUp() {
   </div>
   <button type="submit" class="btn btn-primary" onClick={submitHandler}>Sign up</button>
 </form> 
-<button type="button" class="btn btn-outline-secondary" disabled> Have an Account ? Sign up</button>
+<Link to='/login'><button type="button" class="btn btn-outline-secondary"> Have an Account ? Login</button></Link>
     
 </div>
     </div>
