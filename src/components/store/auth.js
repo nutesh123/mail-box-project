@@ -1,14 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initValue = { showmainPage:false,
-isAuth : false }
+const initValue = { 
+isAuth : false,
+mailboxIsOpen : false }
 
 const authSlice = createSlice({
     name: 'Authentication',
     initialState: initValue,
     reducers:{
         mainPage(state){
-            state.showmainPage=true
+            state.isAuth=true
         },
         checker(state){
             const localIsLogin = localStorage.getItem('JWTTOKEN');
@@ -19,10 +20,16 @@ const authSlice = createSlice({
         }else if(localIsLogin.trim().length > 0){
             state.isAuth = true;
         }
+        },
+        mailBox(state){
+            state.mailboxIsOpen= true
+        },
+        mailBoxed(state){
+            state.mailboxIsOpen= false
         }
     }
 })
 
-export const {mainPage , checker} = authSlice.actions;
+export const {mainPage , checker , mailBox , mailBoxed} = authSlice.actions;
 
 export default authSlice.reducer;

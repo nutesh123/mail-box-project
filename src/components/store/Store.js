@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import authSlice from './auth'
+import authReducers from './auth'
+import sentSlice from './SentBox'
 
 const store = configureStore({
     reducer:{
-        authh : authSlice,
+        authh : authReducers,
+        sent : sentSlice
     }
 }
 )

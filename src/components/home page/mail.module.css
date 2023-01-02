@@ -1,0 +1,63 @@
+.mailbox{
+background-color: silver;
+height: 10cm;
+width: 20cm;
+border: 1mm;
+padding-left: 8mm;
+padding-right: 8mm;
+border-radius: 2%;
+box-shadow: 1mm;
+
+justify-content: center;
+align-items: center;
+margin-left: 1cm;
+}
+
+.main{
+    background-color: white;
+    margin-top: 1cm;
+    width: 22cm;
+    margin-left: 4cm;
+    height: 12cm;
+    border-radius: 2%;
+    border-style: solid;
+    margin-top: -5cm;
+}
+
+.close{
+    padding-left: 20.8cm;
+}
+
+.sentBox{
+    background-color: white;
+    width: 20cm;
+    height: 10cm;
+    width: 22cm;
+    margin-left: 4cm;
+    height: auto;
+    border-radius: 1%;
+    border-style: solid;
+    border-color: aliceblue;
+    margin-top: -5cm;
+}
+.sentBoxEmails{
+    background-color:white;
+    width: 20cm;
+    height: 10cm;
+    width: 22cm;
+    height: auto;
+    border-radius: 1%;
+    border-style: solid;
+    border-width: 0.3mm;
+}
+
+.Inbox{
+    background-color: white;
+    margin-top: 1cm;
+    width: 22cm;
+    margin-left: 4cm;
+    height: auto;
+    border-radius: 2%;
+    border-style: solid;
+    margin-top: -5cm;
+}

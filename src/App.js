@@ -8,6 +8,8 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import MainPage from './components/home page/MainPage';
 import { checker } from './components/store/auth';
 import { useEffect } from 'react';
+// import Inbox from './components/home page/Inbox';
+// import Sent from './components/home page/Sent';
 
 
 function App() {
@@ -22,9 +24,12 @@ const showMainPage= useSelector(state => state.authh.isAuth)
     <Route path='/login' element={ <Login></Login> }></Route>
     <Route path='/' element={ <SignUp></SignUp>}></Route>
   </Routes> }
-  <Routes>
-    <Route></Route>
+  {/* {showMainPage &&  <Routes>
+    <Route path='/inbox' element={<Inbox></Inbox>}></Route>
+    <Route path='/sent' element={<Sent></Sent>}></Route>
   </Routes>
+  } */}
+ 
  </div>
   );
 }

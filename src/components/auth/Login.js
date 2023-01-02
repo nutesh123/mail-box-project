@@ -2,7 +2,7 @@ import React from 'react';
 import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { checker } from '../store/auth';
+import { mainPage } from '../store/auth';
 
 function Login() {
   const dispatch=useDispatch()
@@ -50,9 +50,11 @@ function Login() {
           }
       }).then((data) => {
         localStorage.setItem('JWTTOKEN',data.idToken);
+        localStorage.setItem('userID',data.localId);
+        localStorage.setItem('Email',data.email);
+        dispatch(mainPage())
           console.log('User has successfully login.')
-          dispatch(checker(true))
-          
+        
         })
         .catch((err) => {
           console.log(err)
