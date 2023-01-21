@@ -7,6 +7,7 @@ import Sent from './Sent'
 import { mailBoxed } from '../store/auth';
 import { SentPage , SentPageClose , inboxPage , inboxPageClose } from '../store/SentBox'
 import MailBox from './MailBox'
+import View from './View'
 
 function MainPage() {
 
@@ -33,19 +34,25 @@ function MainPage() {
   const Box =useSelector(st=>st.authh.mailboxIsOpen)
   const sentBox =useSelector(st=>st.sent.sentBox)
   const inBox =useSelector(st=>st.sent.inbox)
+  const totalMail =useSelector(st => st.mails.mailcount)
+
+  function logout(){
+    localStorage.clear('Email')
+
+  }
 
   return (
 
     <div className='container'>
     <div className='row'>
       <div className='col-3'>
-      
+     
       <div>Welcome to your mail box
-
+      <Link to='/'><button onClick={logout}>Logout</button></Link>
 <div>
   <button className='btn btn-primary btn-lg' onClick={open}>Compose</button>
 </div>
-<div> <h4><Link onClick={openInBox} style={{textDecoration: 'none'}} to='/inbox'>Inbox</Link></h4>
+<div> <h4><Link onClick={openInBox} style={{textDecoration: 'none'}} to='/inbox'>Inbox 0/{totalMail}</Link></h4>
 <h4><Link  style={{textDecoration: 'none'}} to='/inbox'>Starred</Link></h4>
 <h4><Link  style={{textDecoration: 'none'}} to='/inbox'>Snoozed</Link></h4>
 <h4><Link onClick={sentOpen} style={{textDecoration: 'none'}} to='/sent'>sent</Link></h4>
@@ -55,6 +62,7 @@ function MainPage() {
 {inBox && <Inbox></Inbox>  }
 {sentBox && <Sent></Sent> }
 </div> 
+
 </div>
   </div>
    </div>

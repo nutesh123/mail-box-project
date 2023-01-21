@@ -14,10 +14,12 @@ import { useEffect } from 'react';
 
 function App() {
 
+ 
   const dispatch = useDispatch();
   useEffect(()=>{ dispatch(checker()) },[])
 
 const showMainPage= useSelector(state => state.authh.isAuth)
+
   return (
  <div>
   {showMainPage ?  <MainPage></MainPage> : <Routes>

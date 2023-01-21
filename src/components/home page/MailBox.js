@@ -32,26 +32,29 @@ const submitHandler=async(event)=>{
     
     const name   = receiver.substring(0, receiver.lastIndexOf("@"));
     const Sendername  = sender.substring(0, sender.lastIndexOf("@"));
-    const id= Math.random()
-    const id1 =id*100000000000000
-    let decimal = Math.trunc(id1)
-
-    console.log(decimal);
+   
     const data={
         sender:sender,
         receiver:receiver,
         subject:SubjectRef.current.value,
         body:content,
         read:false,
-        ID : decimal
+        ID : ''
     }
     try{
-        const res = await axios.post(`https://mail-box-b88cf-default-rtdb.firebaseio.com//${name}/receive.json`,data);
+        const res = await axios.post(`https://mailbox-794b3-default-rtdb.asia-southeast1.firebasedatabase.app//${name}/receive.json`,data);
         console.log(res.statusText==='OK');
+        const id =res.data.name 
+
+      const redata = {
+          ID : id
+        }            
+        axios.patch(`https://mailbox-794b3-default-rtdb.asia-southeast1.firebasedatabase.app//${name}/receive/${id}.json`,redata);
         if(res.statusText==='OK'){
             
-            const res2 = await axios.post(`https://mail-box-b88cf-default-rtdb.firebaseio.com//${Sendername}/send.json`,data);
+            const res2 = await axios.post(`https://mailbox-794b3-default-rtdb.asia-southeast1.firebasedatabase.app//${Sendername}/send.json`,data);
             if(res2.statusText==='OK'){
+              axios.patch(`https://mailbox-794b3-default-rtdb.asia-southeast1.firebasedatabase.app//${Sendername}/send/${id}.json`,redata);
               alert('Mail Send Successfull');
             }else{
                 throw new Error('Something Went wrong!');
@@ -62,8 +65,8 @@ const submitHandler=async(event)=>{
         }
     }catch(err){
         alert(err);
+        console.log('got it')
     }
-
 }
 
   return (
